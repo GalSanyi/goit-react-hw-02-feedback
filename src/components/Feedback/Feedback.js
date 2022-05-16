@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Statistics from 'components/Statistics';
+import { FEEDBACK_OPTIONS } from 'data/constants';
 import s from './Feedback.module.css';
 export default class Statistic extends Component {
   state = {
@@ -10,27 +11,11 @@ export default class Statistic extends Component {
     visible: true,
   };
 
-  handleInGood = () => {
-    this.setState(prevState => {
-      return {
-        good: prevState.good + 1,
-      };
-    });
+  handleFeedback = ({ target }) => {
+    const { feedback } = target.dataset;
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
-  handleNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-  handleBad = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
-      };
-    });
-  };
+
   feedbackTotal = () => {
     const { good, bad, neutral } = this.state;
     return good + bad + neutral;
@@ -51,9 +36,8 @@ export default class Statistic extends Component {
       <div className={s.container}>
         <h1>Pleas leave feedback</h1>
         <FeedbackOptions
-          good={this.handleInGood}
-          bad={this.handleBad}
-          neutral={this.handleNeutral}
+          options={FEEDBACK_OPTIONS}
+          onLeaveFeedback={this.handleFeedback}
         />
         <div>
           {this.state.visible ? (
