@@ -39,19 +39,19 @@ export default class Statistic extends Component {
             options={keys}
             onLeaveFeedback={this.handleFeedback}
           />
-          <div>
-            {this.feedbackTotal() ? (
-              <Statistics
-                good={good}
-                bad={bad}
-                neutral={neutral}
-                total={this.feedbackTotal()}
-                positivePercentage={this.positiveFeedback()}
-              />
-            ) : (
-              <Notification message="No feedback givin" />
-            )}
-          </div>
+        </Section>
+        <Section title="Statistics">
+          {this.feedbackTotal() ? (
+            <Statistics
+              good={good}
+              bad={bad}
+              neutral={neutral}
+              total={this.feedbackTotal()}
+              positivePercentage={this.positiveFeedback()}
+            />
+          ) : (
+            <Notification message="No feedback givin" />
+          )}
         </Section>
       </div>
     );
