@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Notification from 'components/Notification';
 import Statistics from 'components/Statistics';
-import Section from 'Section/Section';
+import Section from '../Section/Section';
 import s from './Feedback.module.css';
 export default class Statistic extends Component {
   state = {
